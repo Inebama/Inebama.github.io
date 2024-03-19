@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ian Baeza's Personal Webpage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+        color: #EAEAEA;
+        background-color: #000;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 15vh;
+        width:100vw;
+    }
+
+    header figure.left-figure,
+    header figure.round-border {
+        height: 14.5vh; /* Ensure the figure takes up the full height of the header */
+        width: auto;
+    }
+
+    header figure.left-figure img,
+    header figure.round-border img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover; /* Maintain aspect ratio while covering the container */
+    }
+
+    header figure.round-border img {
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+
+    header figure.left-figure img {
+        filter: invert(90%);
+    }
+
+    header h1 {
+        flex: 1;
+        font-size: 3vw;
+    }
+
+    main {
+      flex: 1;
+      padding: 0.75vw;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden; /* Hide overflowing content, like the video */
+    }
+
+    #background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* Place the video behind other content */
+    }
+
+    #white-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color:#669792;
+      z-index: -1; /* Place the white background behind other content */
+      display: none; /* Initially hide the white background */
+    }
+
+    #credits {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: #555; /* Text color */
+        font-size: 12px; /* Adjust the font size as needed */
+    }
+
+    nav {
+      width: 15vw;
+      background-color: #333;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      color: #fff;
+      border-radius: 10px;
+      margin-right: 1vw;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav li {
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      display: block;
+      padding: 5%;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background-color: #917EDC; /*#555*/
+    }
+
+
+    #item-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 95%;
+    }
+    #item-list li {
+    position: relative;
+    }
+
+    #items-container {
+      flex: 1;
+    }
+
+    #selected-item-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 82vw;
+      font-size: 20px;
+      line-height: normal;
+    }
+
+    #pdf-viewer {
+      width: 100%;
+      height: 100%;
+    }
+
+    #Description {
+      width: 100%;
+      height: 10%;
+    }
+
+
+    #sub-links {
+        display: none;
+        position: fixed;
+        top:15vh;
+        left: 15vw;
+        width: auto;
+        max-width: 80%;
+        max-height: 80%;
+        background-color: #444;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        list-style-type: none;
+        padding: 10px;
+        margin: 10px;
+        z-index: 1;
+        overflow: hidden;
+        column-count: flex; /* Start with a single column */
+        column-gap: 10px; /* Adjust the gap between columns */
+        border-radius: 20px;
+    }
+
+
+    #sub-links li {
+        margin-bottom: 10px;
+        box-shadow: 0 2px 5px rgba(1, 0, 0, 0.1);
+    }
+
+    #sub-links a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        display: block;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    #sub-links a:hover {
+        background-color: #917EDC; /*#555*/
+    }
+
+
+    .content-container {
+        text-align: left; /* Adjust as needed */
+        padding: 1px; /* Add padding to the container */
+        width:82vw;
+    }
+
+    .content-container h1 {
+        font-size: 4em; /* Adjust the title font size */
+    }
+
+    .content-container img {
+        float: right;
+    }
+
+    .content-container p {
+        font-size: 20px; /* Adjust the text font size */
+    }
+
+
+    footer {
+      color: #EAEAEA;
+      background-color: #000;
+      padding: 5px;
+      height:5vh;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <!-- Non-round-bordered figure (left side) -->
+    <figure class="left-figure">
+      <img src="MyLogo.png" alt="Logo">
+    </figure>
+    <h1>PhD Student at <a style="color:#4AAFA8;" href="https://investigacion.unab.cl/doctorados-eng/astrophysics/">UNAB</a></h1>
+    <!-- Round-bordered figure (right side) -->
+    <figure class="round-border">
+      <img src="image.png" alt="Myself">
+    </figure>
+  </header>
+
+  <main>
+    <!-- Background video -->
+    <video autoplay muted loop id="background-video">
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- White background -->
+    <div id="white-background"></div>
+
+    <nav id="side-nav">
+      <ul id="item-list">
+        <div id="items-container">
+          <li> <a href="#" onclick="showItem('item1')">About Me</a> </li>
+         <li>
+            <a href="#" onclick="showItem('item2')">Publications</a>
+            <ul id="sub-links" style="display: none;"></ul>
+            <!-- Sub-links will be dynamically added here -->
+          </li>
+          <li>
+            <a href="#" onclick="showItem('item3')">Talks and Posters</a>
+            <ul id="sub-links" style="display: none;"></ul>
+            <!-- Sub-links will be dynamically added here -->
+          </li>
+          <li>
+            <a href="#" onclick="showItem('item4')">Homeworks</a>
+            <ul id="sub-links" style="display: none;"></ul>
+            <!-- Sub-links will be dynamically added here -->
+          </li>
+          <li> <a href="#" onclick="showItem('item5')">Classes</a> </li>
+          <!-- Add more items as needed -->
+        </div>
+        <li> <a href="#" onclick="resetSelection()">&#10070; Home</a> </li>
+      </ul>
+
+    </nav>
+
+    <div id="selected-item-content">
+      <!-- The embed element for the PDF viewer -->
+<!--       <embed id="pdf-viewer" src="" type="application/pdf" width="100%" height="100%" /> --> <!--never worked-->
+    </div>
+    <div id="credits">
+  <p>Credits for the video: <a href="https://www.astro.uu.se/~bf/publications/2018_08_20_Vienna_AGB/Talk/index.htm">Bernd Freytag talk 2018</a></p>
+</div>
+  </main>
+
+  <footer>
+    <p>My <a style="color:blue;" href="https://orcid.org/0000-0002-9881-6336" target="_blank">ORCID</a> for more information.</p>
+  </footer>
+
+  <script>
+  document.addEventListener('click', function (event) {
+  const subLinks = document.getElementById("sub-links");
+
+  // Check if the clicked element is not inside the sub-links
+  if (event.target !== subLinks && !subLinks.contains(event.target)) {
+    // If not, hide the sub-links
+    subLinks.style.display = 'none';
+  }
+});
+
+  let lastClickedItem = null; // Variable to track which element was clicked last time
+
+  function showItem(item) {
+    // Define content for each item
+    const itemContent = {
+    'item1': {
+            title: `<h1> Personal Info </h1>`,
+            paragraph: `<p style=' overflow-y: auto;'> I performed <a style="color:blue;" target="_blank" href='http://repositorio.udec.cl/jspui/handle/11594/10584'> my bachelor's and master studies</a> at the Universidad de Concepción in Chile and I'm currently doing my <a style="color:blue;" target="_blank" href='https://fisica.unab.cl/estudiantes-de-postgrado/'>PhD at Universidad Andrés Bello </a>. My academic formation has given me experience in programming with <b>Python</b> (and related tools like <b>Jupyter Notebook</b>), applied to astronomical data. I also gained expertise with different software and computational tools such as <b>LaTeX</b>, <b>TopCat</b>, and a bit of <b>IRAF</b>, <b>CASA</b>, and <b>SAOImageDS9</b>.
+
+            <br><br><br>
+
+            <img src="LCO-Visit.jpeg" alt="Pictures of my visit to the LCO" ALIGN='right' width='25%' style="margin:20px;"/>
+
+            My future research interest is mainly in galaxy evolution and the relationships observed through different environments (bulge, disk, halo) and sub-structures like stellar clusters and regions with ongoing star formation. I'm particularly interested in evolved stars, the dynamics of their atmospheres, and the process of mass loss that occurs in these stars.
+
+            <br><br><br>
+
+
+
+            I've participated in a bunch of workshops and conferences, most of them in Santiago of Chile in different universities and in one of the office of <a style="color:blue;" target="_blank" href='https://www.eso.org/public/about-eso/travel/vitacura/'> ESO </a>
+
+            <br><br><br>
+
+
+            I had also the oportunity of visiting <a style="color:blue;" target="_blank"  href='https://www.lco.cl'>Las Campanas Observatory</a> for an observing run of <a style="color:blue;" target="_blank"  href='http://lihweb.kyoto-su.ac.jp/WINERED/overview_winered.html'>WINERED</a>. <br><br><br>
+
+            Finally in my free time, I enjoy working out, trekking, playing volleyball, and tasting a good cup of coffee (currently I couldn't live without the coffee).
+            </p>`
+        },
+    'item5': {
+            title: `<h1> Classes That I've Imparted </h1>`,
+            paragraph: `</p> Oops, this section is still under construction. Soon this section will be filled. </p>`
+        }
+    };
+
+    // Display selected item content
+    const selectedItemContent = document.getElementById("selected-item-content");
+    const backgroundVideo     = document.getElementById("background-video");
+    const whiteBackground     = document.getElementById("white-background");
+    const credits             = document.getElementById("credits");
+
+
+    if (item === 'item2') {
+        // Get element of sub-links from body
+        const subLinks = document.getElementById("sub-links");
+
+
+        if (lastClickedItem == 'item2') {
+            // Display sub-links
+            subLinks.style.display = subLinks.style.display === 'block' ? 'none' : 'block';
+
+            } else {
+            lastClickedItem = 'item2'
+            subLinks.style.display = 'block'
+
+            }
+
+        if (subLinks.style.display=='block'){
+
+            // Add sub-links
+            const subLinkItems = {
+            'NGC 2298 Chemical Abundances': 'PDFs/my_paper.pdf',
+            // Add more sub-links as needed
+            };
+
+            const descriptions = {
+            'NGC 2298 Chemical Abundances': 'none',
+            // Add more descriptions as needed
+        };
+
+            SetButtonsSubLinks(subLinkItems,descriptions)
+
+
+        } else {
+        resetSelection()
+        }
+//         // If click other part of the screen the sublinks are hiden
+//         event.stopPropagation();
+
+    } else if (item === 'item3') {
+        // Get element of sub-links from body
+        const subLinks = document.getElementById("sub-links");
+
+        // Display sub-links ?
+        if (lastClickedItem == 'item3') {
+
+            subLinks.style.display = subLinks.style.display === 'block' ? 'none' : 'block';
+
+            } else {
+            lastClickedItem = 'item3'
+            subLinks.style.display = 'block'
+
+            }
+
+        if (subLinks.style.display=='block'){
+
+            // Add sub-links
+            const subLinkItems = {
+                'NGC 2298 VLTI-HOW 2022': 'PDFs/vltihow2022_Poster_Baeza.pdf',
+                'MYLUP Poster (Protoplanetary Disk)': 'PDFs/Vertical_Poster_2.pdf',
+            // Add more sub-links as needed
+            };
+
+            // Add descriptions, if you don't put any description it will appear only the title (link)
+            // if you don't want this define the description as 'none' and nothing will appear
+            const descriptions = {
+                'NGC 2298 VLTI-HOW 2022': 'none',
+                'MYLUP Poster (Protoplanetary Disk)': 'none',
+            // Add more descriptions as needed
+        };
+
+            SetButtonsSubLinks(subLinkItems,descriptions)
+
+        } else {
+            resetSelection()
+        }
+//         // If click other part of the screen the sublinks are hiden
+//         event.stopPropagation();
+
+   } else if (item === 'item4') {
+        // Get element of sub-links from body
+        const subLinks = document.getElementById("sub-links");
+
+        if (lastClickedItem == 'item4') {
+                // Display sub-links
+                subLinks.style.display = subLinks.style.display === 'block' ? 'none' : 'block';
+
+            } else {
+                lastClickedItem = 'item4'
+                subLinks.style.display = 'block'
+            }
+
+        if (subLinks.style.display=='block'){
+
+
+            const stellar_options = {
+                'Figures Review Stellar Astrophysics': 'Homework/Papers_Stellar/Figures_review.pdf',
+                // Add more sub-links as needed
+                };
+            const descriptions_stellar = {
+                'Figures Review Stellar Astrophysics': 'none',
+                // Add more sub-links as needed
+                };
+
+
+            const PP_Disk_options = {
+                'Research MY LUP': 'Homework/ProtoPlanetary-Disk/MyLup_Baeza_letter.pdf',
+                // Add more sub-links as needed
+                };
+            const descriptions_PP_Disk = {
+                'Research MY LUP': 'none',
+                // Add more sub-links as needed
+                };
+
+
+            const Extragalactic_options = {
+                'Homework Extragalactic': 'Homework/Extragalactic/Extragalactic_Homework_Baeza_Ian.pdf',
+                // Add more sub-links as needed
+                };
+            const descriptions_Extragalactic = {
+                'Homework Extragalactic': 'none',
+                // Add more sub-links as needed
+                };
+
+
+            const cosmo_options = {
+                'Numerical Excercise 1': 'Homework/Cosmological_Simulations/NumEx1_Baeza_with_Code.html',
+                'Numerical Excercise 2': 'Homework/Cosmological_Simulations/NumEx2_withCode_Baeza.html',
+                'Numerical Excercise 3': 'Homework/Cosmological_Simulations/NumEx3_Baeza_with_code.html',
+                // Add more sub-links as needed
+            };
+            const descriptions_cosmo = {
+                'Numerical Excercise 1': 'none',
+                'Numerical Excercise 2': 'none',
+                'Numerical Excercise 3': 'none',
+
+            };
+
+
+            const topics_options = {
+                'Topics of Astrophysics': 'Homework/Topics_of_Astrophysics/Topics_of_Astrophysics_Exam_Baeza_Ian.pdf',
+                // Add more sub-links as needed
+                };
+            const descriptions_topics = {
+                'Topics of Astrophysics': 'none',
+                // Add more sub-links as needed
+                };
+
+
+            const journals_options = {
+                '1st Journal':'Homework/Journals/Journal_1/index.html',
+                '2nd Journal':'Homework/Journals/Journal_2/test.html',
+            };
+
+            const descriptions_journal = {
+                '1st Journal':'none',
+                '2nd Journal':'none',
+            };
+
+
+
+            // Add sub-links
+            const subLinkItems = {
+                'Overview Papers Stellar Astrophysics': {
+                    options: stellar_options,
+                    descriptions: descriptions_stellar
+                },
+                'Proto Planetary Disks': {
+                    options: PP_Disk_options,
+                    descriptions: descriptions_PP_Disk
+                },
+                'Extragalactic Course': {
+                    options: Extragalactic_options,
+                    descriptions: descriptions_Extragalactic
+                },
+                'Cosmological Simulations': {
+                    options: cosmo_options,
+                    descriptions: descriptions_cosmo
+                },
+                'Topics of Astrophysics': {
+                    options: topics_options,
+                    descriptions: descriptions_topics
+                },
+                'Journal Clubs': {
+                    options: journals_options,
+                    descriptions: descriptions_journal
+                },
+                // Add more sub-links as needed
+            };
+
+            const descriptions = {'sublink':'none'};
+
+            SetButtonsSubLinks(subLinkItems,descriptions)
+
+        } else {
+            resetSelection()
+        }
+//         // If click other part of the screen the sublinks are hiden
+//         event.stopPropagation(); // also this make the sublinks stay until you do somenthing
+
+    } else {
+        // Hide the credits
+        credits.style.display = 'none';
+        // Show content
+        selectedItemContent.innerHTML = itemContent[item].title + itemContent[item].paragraph;
+        // Hide the background video
+        backgroundVideo.style.display = 'none';
+        // Show the white background
+        whiteBackground.style.display = 'block';
+    }
+  }
+
+  function SetButtonsSubLinks(subLinkItems,descriptions) {
+
+    const selectedItemContent = document.getElementById("selected-item-content");
+    const backgroundVideo     = document.getElementById("background-video");
+    const whiteBackground     = document.getElementById("white-background");
+    const credits             = document.getElementById("credits");
+
+
+    const subLinks = document.getElementById("sub-links");
+    subLinks.innerHTML = ''; // Clears the content in order of not double the sublinks due iterative click
+
+    Object.keys(subLinkItems).forEach(subLink => {
+            const subLinkItem     = document.createElement("li");
+            const subLinkAnchor   = document.createElement("a");
+            subLinkAnchor.href    = "javascript:void(0);"; // Disable the default hyperlink behavior
+//             console.log('Tipo', typeof subLinkItems[subLink]);
+//             console.log('mostrar', subLink);
+//             console.log('mostrar interior', subLinkItems[subLink]);
+
+            if (typeof subLinkItems[subLink] === 'object') {
+                subLinkAnchor.onclick = function() {
+                                   SetButtonsSubLinks(subLinkItems[subLink].options,subLinkItems[subLink].descriptions)
+                                   }
+            } else {subLinkAnchor.onclick = function () {
+                                    // Clear existing content before adding new items
+                                    credits.style.display = 'none';
+                                    // Hide content
+                                    backgroundVideo.style.display = 'none';
+                                    // Show the white background
+                                    whiteBackground.style.display = 'block';
+
+                                    const pdfSrc = subLinkItems[subLink];
+                                    const description = getPDFDescription(subLink,descriptions);
+
+                                    const container = document.createElement("div");
+                                    container.classList.add("content-container");
+
+                                    // To hide Title you have to put "none" in description of sublink
+                                    // otherwise if you don't provide an entry it will put the title anyways
+                                    if (description != "none") {
+                                        const title = document.createElement("h1");
+                                        title.textContent = subLink;
+
+                                        const text = document.createElement("p");
+                                        text.textContent = description;
+
+                                        // Append title and text to the container
+                                        container.appendChild(title);
+                                        container.appendChild(text);
+                                    }
+
+                                    const embedElement = `<embed src="${pdfSrc}" type="application/pdf" width="100%" height="100%" />`;
+
+
+                                    // Set the HTML
+                                    selectedItemContent.innerHTML = '';
+                                    selectedItemContent.appendChild(container);
+                                    selectedItemContent.innerHTML += embedElement;
+
+                                    subLinks.style.display = 'none';
+                                };
+        }
+        subLinkAnchor.textContent = subLink;
+
+        // Add left margin or padding to create space
+        /*subLinkItem.style.marginLeft = '20px';*/ // You can adjust the value as needed
+
+        subLinkItem.appendChild(subLinkAnchor);
+        subLinks.appendChild(subLinkItem);
+    });
+
+    const buttonElements = subLinks.querySelectorAll('a'); // Adjust the selector if needed
+    let totalButtonsHeight = 0;
+
+    buttonElements.forEach(button => {
+        const buttonRect = button.getBoundingClientRect();
+        totalButtonsHeight += buttonRect.height;
+    });
+
+//     console.log('Total Height of Buttons:', totalButtonsHeight);
+
+    // Calculate the estimated height occupied by sub-links
+    const estimatedSubLinksHeight = totalButtonsHeight//subLinksRect.height;
+
+    // Calculate the maximum available height for sub-links (up to the footer)
+    const footer             = document.querySelector('footer');
+    const maxAvailableHeight = footer.getBoundingClientRect().top- window.innerHeight/3.5;//
+
+    // Debug prints
+//     console.log('Estimated Sub-links Height:', estimatedSubLinksHeight);
+//     console.log('Max Available Height:'      , maxAvailableHeight);
+
+    // Determine the number of columns based on available height
+    let columnCount;
+    if (estimatedSubLinksHeight <= maxAvailableHeight) {
+        // If the estimated height is less than the available height, use one column
+        columnCount = 1;
+    } else {
+        // Otherwise, calculate the approximate number of columns needed
+        const columnsNeeded = Math.ceil(estimatedSubLinksHeight / maxAvailableHeight);
+
+        // Limit the number of columns to a reasonable value
+        columnCount = Math.min(columnsNeeded, 5); // Adjust as needed
+    }
+
+    // Debug print
+//     console.log('Calculated Columns:', columnCount);
+
+    // Adjust the column count based on the available height
+    subLinks.style.columnCount = columnCount;
+
+//     console.log('foot T', footer.getBoundingClientRect().top);
+//     console.log('foot B', footer.getBoundingClientRect().bottom);
+
+    event.stopPropagation(); // also this make the sublinks stay until you do somenthing
+
+  }
+
+
+  function getPDFDescription(subLink,descriptions) {
+
+        return descriptions[subLink] || ''; // Description or (||) default message
+    }
+
+  function resetSelection() {
+        // Reset the content to the default message
+        const selectedItemContent = document.getElementById("selected-item-content");
+        const subLinks            = document.getElementById("sub-links");
+        const backgroundVideo     = document.getElementById("background-video");
+        const whiteBackground     = document.getElementById("white-background");
+        const credits             = document.getElementById("credits");
+
+        selectedItemContent.innerHTML = "<h1 style='color:white;'> Welcome to my personal website</h1><p style='color:white;'>Here you will be able to find information about me, and material that I've done.</p>";
+
+        // Hide sub-links
+        subLinks.style.display = 'none';
+
+        // Show the background video
+        backgroundVideo.style.display = 'block';
+        backgroundVideo.play();
+
+        // Hide the white background
+        whiteBackground.style.display = 'none';
+
+        // Hide the credits
+        credits.style.display = 'block';
+    }
+  window.onload = resetSelection;
+</script>
+
+</body>
+
+</html>
